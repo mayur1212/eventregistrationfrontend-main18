@@ -26,3 +26,4 @@ build/
 *.zip 
 *.mp4 
 build.zip
+!src/assets/*.mp4
