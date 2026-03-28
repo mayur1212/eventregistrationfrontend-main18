@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import API_BASE_URL from "../../api";
 
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -180,7 +179,7 @@ const events = [
     if (!validateForm()) return;
 
     try {
-      await axios.post(`${API_BASE_URL}/register`, form);
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register`, form);
 
       setError("");
       setSuccess("Registration successful! Check your email.");
@@ -410,4 +409,3 @@ const Input = ({ icon, error, ...props }) => (
 );
 
 export default RegisterForm;
-
