@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../../api";
 
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -47,18 +48,24 @@ const events = [
     {
       name: "Michiana Premier Event",
       img: michiana,
+      venue: "BKC",
+      city: "Mumbai",
       startDate: "2026-05-10",
       endDate: "2026-05-20",
     },
     {
       name: "Run the Robots Premier Event",
       img: runrobots,
+      venue: "MVJ College of Engineering",
+      city: "Bangalore",
       startDate: "2026-05-15",
       endDate: "2026-05-25",
     },
     {
       name: "European Premier Event",
       img: european,
+      venue: "Pragati Maidan",
+      city: "Delhi",
       startDate: "2026-05-21",
       endDate: "2026-05-30",
     },
@@ -173,7 +180,7 @@ const events = [
     if (!validateForm()) return;
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register`, form);
+      await axios.post(`${API_BASE_URL}/register`, form);
 
       setError("");
       setSuccess("Registration successful! Check your email.");
@@ -354,12 +361,16 @@ const events = [
                       ...prev,
                       eventName: eventItem.name,
                       eventImage: eventItem.img,
+                      venue: eventItem.venue,
+                      city: eventItem.city,
                       startDate: eventItem.startDate,
                       endDate: eventItem.endDate,
                     }));
                     setFormErrors((prev) => ({
                       ...prev,
                       eventName: "",
+                      venue: "",
+                      city: "",
                       startDate: "",
                       endDate: "",
                       date: "",
@@ -399,3 +410,4 @@ const Input = ({ icon, error, ...props }) => (
 );
 
 export default RegisterForm;
+
